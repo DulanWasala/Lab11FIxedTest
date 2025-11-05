@@ -1,0 +1,11 @@
+# .github/workflows/ci-minimal.yml
+name: CI Minimal
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Hello from GitHub Actions"
