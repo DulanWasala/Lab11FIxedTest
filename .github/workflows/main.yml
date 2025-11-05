@@ -1,23 +1,25 @@
-# .github/workflows/ci-minimal.yml
+# .github/workflows/main.yml
 name: CI Minimal
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hello from GitHub Actions"
 
-      # Step 7: Use pre-built actions
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: '16'
 
-      # Step 8: Secure secrets
+      - name: Hello
+        run: echo "Hello from GitHub Actions"
+
       - name: Use secret
-        run: echo "Using secret: ${{ secrets.API_KEY }}"
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: echo "Using secret: $API_KEY"
