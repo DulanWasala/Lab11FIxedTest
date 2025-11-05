@@ -19,5 +19,5 @@ jobs:
           node-version: 16
       # Step 8: Secure secrets
       - name: Use secret
-        run: echo "Using secret: ${{ secrets.API_KEY }}"
+      - run: echo "Using secret: ${{ secrets.API_KEY }}"
 
