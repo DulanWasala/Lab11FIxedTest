@@ -1,29 +1,25 @@
-# .github/workflows/python-ci.yml
-name: Python CI/CD
+# .github/workflows/main.yml
+name: CI Minimal
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.9'
+          node-version: '16'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            echo "No requirements.txt found, skipping dependency install"
-          fi
+      - name: Hello
+        run: echo "Hello from GitHub Actions"
 
-      - name: Run tests
-        run: python -m unittest discover
+      - name: Use secret
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: echo "Using secret: $API_KEY"
