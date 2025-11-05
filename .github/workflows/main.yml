@@ -1,11 +1,25 @@
 # .github/workflows/ci-minimal.yml
 name: CI Minimal
+
 on:
   push:
     branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "Hello from GitHub Actions"
+
+      # Step 6: Add advanced steps
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          python -m unittest discover
+
+      - name: Build the application
+        run: |
+          echo "Building the app..."
+          npm install
+          npm run build
